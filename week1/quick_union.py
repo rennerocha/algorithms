@@ -2,21 +2,21 @@
 
 class QuickUnion(object):
 
-    def __init__(self, array_size):
-        self.array = range(0, array_size)
-        print "Initilized array: ", self.array
-        
+    def __init__(self, size):
+        self.array = range(array_size)
+
     def is_connected(self, p, q):
         return self._root_of(p) == self._root_of(q)
 
-    def _root_of(self, q):
-        while q != self.array[q]:
-            q = self.array[q]
-        return q
+    def _root_of(self, p):
+        while p != self.array[p]:
+            p = self.array[p]
+        return p
 
     def union(self, p, q):
-        self.array[self._root_of(p)] = self._root_of(q)
-        print "union({0}, {1}) = {2})".format(p, q, self.array)
+        root_p = self._root_of(p)
+        root_q = self._root_of(q)
+        self.array[root_p] = root_q
 
 
 if __name__ == '__main__':
