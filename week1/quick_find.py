@@ -2,21 +2,17 @@
 
 class QuickFind(object):
 
-    def __init__(self, array_size):
-        self.array = range(0, array_size)
-        print "Initilized array: ", self.array
-    
+    def __init__(self, size):
+        self.array = range(array_size)
+
     def is_connected(self, p, q):
         return self.array[p] == self.array[q]
 
     def union(self, p, q):
         if not self.is_connected(p, q):
-            value_q = self.array[q]
-            value_p = self.array[p]
-            for index, value in enumerate(self.array):
-                if value == value_p:
-                    self.array[index] = value_q
-        print "union({0}, {1}) = {2})".format(p, q, self.array)
+            idp = self.array[p]
+            idq = self.array[q]
+            self.array = [ idq if v == idp else v for v in self.array ]
 
 
 if __name__ == '__main__':
